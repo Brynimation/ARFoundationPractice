@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/Scenes/Test2.unity
+    guid: dba34755a2acaff40bab811a3506eb95
+  - enabled: 0
+    path: Assets/Scenes/Interactable.unity
+    guid: bed56ebf5960ac54a8c9a41d373f4e21
+  - enabled: 0
+    path: Assets/Scenes/Test3.unity
+    guid: c0bea6cd6b7721b46b37e32fbbcbce13
+  - enabled: 0
+    path: Assets/Scenes/InteractableObjectPlacement.unity
+    guid: f6fe25ff95972d8469e38de86d5a77f9
+  - enabled: 0
+    path: Assets/Scenes/FaceTracking/FaceTracking.unity
+    guid: afb59757b05d67542b6e0cb3a1fbbe9e
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 29e6f6e8e30d4da4c8eb1e61a1cbc32d
+  - enabled: 0
+    path: Assets/Scenes/FaceTracking/Game.unity
+    guid: 1ada82f21d136f74d8a5648df284bcbd
+  - enabled: 1
+    path: Assets/Scenes/Balloon Popping/Balloon Popping.unity
+    guid: 7f96bb57e17e58444bd5b5573995e26f
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e0c0863b87765f64eae2c0ac28fd3ffe,
+      type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 066b10ec6cea17141805413b6e488abd,
+      type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 120c0b23f0b537f4eaa97c0739d3c22b,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ed950cf041f0d8a45a226b671556b4c3,
+      type: 2}
