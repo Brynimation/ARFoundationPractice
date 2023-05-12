@@ -19,14 +19,20 @@ public class BalloonUI : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] Button RestartButton;
     [SerializeField] Button QuitButton;
+
+    [Header("Large text")]
+    [SerializeField] TMP_Text LargeText;
+    [SerializeField] CanvasGroup LargeTextCG;
     private int score = 0;
     private BalloonSpawner balloonSpawner;
+    private float remainingTimeToFade;
     void Awake()
     {
         balloonSpawner = FindObjectOfType<BalloonSpawner>();
 
         balloonSpawner.OnSpawnNextQuestion += UpdateQuestionText;
         balloonSpawner.OnUpdateTimeRemaining += UpdateTimeRemainingText;
+        balloonSpawner.OnDisplayLargeText += DisplayLargeText;
 
         Balloon.OnDestroyBalloon += UpdateScoreText;
         UpdateScoreText(0);
@@ -36,6 +42,25 @@ public class BalloonUI : MonoBehaviour
     {
         RestartButton.onClick.AddListener(Restart);
         QuitButton.onClick.AddListener(Quit);
+    }
+
+    void DisplayLargeText(string text) 
+    {
+        LargeText.SetText(text);
+        StartCoroutine(FadeInImage());
+    }
+    IEnumerator FadeInImage() 
+    {
+        LargeTextCG.gameObject.SetActive(true);
+        while (remainingTimeToFade < 1f) 
+        {
+            LargeTextCG.alpha = 1 - remainingTimeToFade;
+            remainingTimeToFade += Time.deltaTime;
+            yield return null;
+        }
+        remainingTimeToFade = 0f;
+        LargeTextCG.gameObject.SetActive(false);
+
     }
 
     private void Restart() 

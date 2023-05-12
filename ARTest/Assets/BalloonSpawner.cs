@@ -19,6 +19,7 @@ public class BalloonSpawner : MonoBehaviour
     public List<QuestionAnswer> questionAnswers;
     public Balloon balloonPrefab;
     public Action<string> OnSpawnNextQuestion;
+    public Action<string> OnDisplayLargeText;
     public Action<string> OnUpdateTimeRemaining;
 
     private float remainingTime;
@@ -42,6 +43,7 @@ public class BalloonSpawner : MonoBehaviour
 
     IEnumerator DelayStart()
     {
+#if !UNITY_EDITOR
         while (ARFace == null) 
         {
             ARFace = FindObjectOfType<ARFace>();
@@ -56,11 +58,15 @@ public class BalloonSpawner : MonoBehaviour
         {
             yield return null;
         }
+#endif
         OnSpawnNextQuestion?.Invoke("Starting in 3");
+        OnDisplayLargeText?.Invoke(3.ToString());
         yield return new WaitForSeconds(1f);
         OnSpawnNextQuestion?.Invoke("Starting in 2");
+        OnDisplayLargeText?.Invoke(2.ToString());
         yield return new WaitForSeconds(1f);
         OnSpawnNextQuestion?.Invoke("Starting in 1");
+        OnDisplayLargeText?.Invoke(1.ToString());
         yield return new WaitForSeconds(1f);
 
         started = true;
@@ -117,6 +123,7 @@ public class BalloonSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if !UNITY_EDITOR
         if (ARFace == null && started) 
         {
             started = false;
@@ -127,8 +134,11 @@ public class BalloonSpawner : MonoBehaviour
                 started = true;
             }
         }
+#endif
         if (!started) return;
+#if !UNITY_EDITOR
         Debug.Log("Diagonal length: " + GetScreenSpaceDiagonal(faceRenderer.bounds));
+#endif
         remainingTime -= Time.deltaTime;
         if (remainingTime <= 0) 
         {
